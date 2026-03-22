@@ -13,7 +13,15 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['"Public Sans"', 'system-ui', 'sans-serif'],
+        body: ['"Inter"', 'system-ui', 'sans-serif'],
+      },
       colors: {
+        'domain-gross-motor': 'hsl(var(--domain-gross-motor))',
+        'domain-fine-motor': 'hsl(var(--domain-fine-motor))',
+        'domain-language': 'hsl(var(--domain-language))',
+        'domain-personal-social': 'hsl(var(--domain-personal-social))',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
