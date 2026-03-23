@@ -16,9 +16,9 @@ export interface AgeGroup {
 
 export const domainLabels: Record<Domain, string> = {
   "gross-motor": "Gross Motor",
-  "fine-motor": "Fine Motor-Adaptive",
+  "fine-motor": "Fine Motor",
   "language": "Language",
-  "personal-social": "Personal-Social",
+  "personal-social": "Social",
 };
 
 export const domainColors: Record<Domain, string> = {
