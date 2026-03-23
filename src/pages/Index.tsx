@@ -3,6 +3,7 @@ import { ageGroups, Domain } from "@/data/denverMilestones";
 import { AgeNav } from "@/components/AgeNav";
 import { DomainFilter } from "@/components/DomainFilter";
 import { MilestoneCard } from "@/components/MilestoneCard";
+import { MilestoneSearch } from "@/components/MilestoneSearch";
 
 const allDomains = new Set<Domain>([
   "gross-motor",
