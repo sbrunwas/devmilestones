@@ -4,7 +4,15 @@ import { AgeNav } from "@/components/AgeNav";
 import { DomainFilter } from "@/components/DomainFilter";
 import { MilestoneCard } from "@/components/MilestoneCard";
 
-const allDomains = new Set<Domain>(["gross-motor", "fine-motor", "language", "personal-social"]);
+const allDomains = new Set<Domain>([
+  "gross-motor",
+  "fine-motor",
+  "self-help",
+  "problem-solving",
+  "social-emotional",
+  "receptive-language",
+  "expressive-language",
+]);
 
 const Index = () => {
   const [activeAgeId, setActiveAgeId] = useState(ageGroups[0].id);
@@ -34,14 +42,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="border-b bg-card">
         <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
-          <div className="flex items-baseline gap-3">
-            <h1 className="font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-              Denver II Developmental Milestones
-            </h1>
-          </div>
+          <h1 className="font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+            Developmental Milestones
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Reference tool for developmental milestones from birth to 6 years, organized by age and domain.
           </p>
@@ -49,7 +54,6 @@ const Index = () => {
       </header>
 
       <main className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
-        {/* Age Navigation */}
         <section>
           <h2 className="mb-2 font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Age Group
@@ -57,7 +61,6 @@ const Index = () => {
           <AgeNav ageGroups={ageGroups} activeId={activeAgeId} onSelect={setActiveAgeId} />
         </section>
 
-        {/* Domain Filter */}
         <section className="mt-6">
           <h2 className="mb-2 font-display text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Filter by Domain
@@ -65,7 +68,6 @@ const Index = () => {
           <DomainFilter activeDomains={activeDomains} onToggle={handleToggleDomain} />
         </section>
 
-        {/* Milestone heading */}
         <section className="mt-8">
           <div className="flex items-baseline justify-between">
             <h2 className="font-display text-lg font-semibold text-foreground">
@@ -79,7 +81,6 @@ const Index = () => {
             </span>
           </div>
 
-          {/* Milestone Grid */}
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {filteredMilestones.map((ms) => (
               <MilestoneCard key={ms.id} milestone={ms} />
@@ -93,12 +94,11 @@ const Index = () => {
           )}
         </section>
 
-        {/* Disclaimer */}
         <footer className="mt-12 border-t pt-6 pb-8">
           <p className="text-xs leading-relaxed text-muted-foreground">
-            Based on the Denver II Developmental Screening Test (Frankenburg et al.). This tool is for
-            reference purposes only and should not replace professional developmental assessment.
-            Percentages indicate the proportion of children passing at the given age.
+            Based on "Developmental Milestones" by Scharf, Scharf, & Stroustrup (Pediatrics in Review, 2016).
+            Published by the American Academy of Pediatrics. This tool is for reference purposes only and
+            should not replace professional developmental assessment.
           </p>
         </footer>
       </main>
