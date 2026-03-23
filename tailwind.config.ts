@@ -20,8 +20,11 @@ export default {
       colors: {
         'domain-gross-motor': 'hsl(var(--domain-gross-motor))',
         'domain-fine-motor': 'hsl(var(--domain-fine-motor))',
-        'domain-language': 'hsl(var(--domain-language))',
-        'domain-personal-social': 'hsl(var(--domain-personal-social))',
+        'domain-self-help': 'hsl(var(--domain-self-help))',
+        'domain-problem-solving': 'hsl(var(--domain-problem-solving))',
+        'domain-social-emotional': 'hsl(var(--domain-social-emotional))',
+        'domain-receptive-language': 'hsl(var(--domain-receptive-language))',
+        'domain-expressive-language': 'hsl(var(--domain-expressive-language))',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
