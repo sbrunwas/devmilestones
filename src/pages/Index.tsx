@@ -3,6 +3,7 @@ import { ageGroups, Domain } from "@/data/denverMilestones";
 import { AgeNav } from "@/components/AgeNav";
 import { DomainFilter } from "@/components/DomainFilter";
 import { MilestoneCard } from "@/components/MilestoneCard";
+import { MilestoneSearch } from "@/components/MilestoneSearch";
 
 const allDomains = new Set<Domain>([
   "gross-motor",
@@ -44,12 +45,17 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
         <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6">
-          <h1 className="font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-            Developmental Milestones
-          </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Reference tool for developmental milestones from birth to 6 years, organized by age and domain.
-          </p>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h1 className="font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                Developmental Milestones
+              </h1>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Reference tool for developmental milestones from birth to 6 years, organized by age and domain.
+              </p>
+            </div>
+            <MilestoneSearch />
+          </div>
         </div>
       </header>
 
