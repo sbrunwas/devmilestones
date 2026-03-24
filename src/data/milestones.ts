@@ -4,6 +4,7 @@
 // Key changes from previous version:
 // - Age groups now match CDC 2022 well-child visit checkpoints:
 //   2m, 4m, 6m, 9m, 12m, 15m, 18m, 24m, 30m, 3y, 4y, 5y
+// - Plus an additional 6-year reference group to preserve app coverage through age 6
 // - Milestones reflect what 75%+ of children do BY each age (not average age)
 // - Domains renamed to match CDC 2022: social-emotional, language, cognitive,
 //   gross-motor, fine-motor (receptive/expressive kept for clinical utility,
@@ -482,6 +483,32 @@ export const ageGroups: AgeGroup[] = [
       m("Buttons some buttons", "fine-motor"),
       m("Hops on one foot", "gross-motor"),
       m("Dresses and undresses without help", "self-help"),
+    ],
+  },
+  {
+    id: "6y",
+    label: "6 Years",
+    sublabel: "School-Age",
+    milestones: [
+      // Social/Emotional
+      m("Wants to be like friends and may seek their approval", "social-emotional"),
+      m("Enjoys group games with rules and turn-taking", "social-emotional"),
+      m("Can usually tell fantasy from reality", "social-emotional"),
+
+      // Language/Communication
+      m("Describes events in order with enough detail to follow", "expressive-language"),
+      m("Asks about the meaning of unfamiliar words", "receptive-language"),
+      m("Uses complete sentences to explain ideas and plans", "expressive-language"),
+
+      // Cognitive
+      m("Counts and works with numbers up to 20", "cognitive"),
+      m("Solves simple addition and subtraction problems", "cognitive"),
+      m("Reads and writes short, simple sentences", "cognitive"),
+
+      // Movement/Physical
+      m("Skips, hops, and balances with improved coordination", "gross-motor"),
+      m("Prints first and last name more clearly", "fine-motor"),
+      m("Ties shoes independently", "self-help"),
     ],
   },
 ];
