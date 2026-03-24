@@ -1,4 +1,4 @@
-import { Domain, domainLabels } from "@/data/denverMilestones";
+import { Domain, domainLabels } from "@/data/milestones";
 
 const allDomains: Domain[] = [
   "gross-motor",

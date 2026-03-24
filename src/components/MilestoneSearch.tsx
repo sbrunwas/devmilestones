@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import { ageGroups, domainLabels, domainColors } from "@/data/denverMilestones";
+import { ageGroups, domainLabels, domainColors } from "@/data/milestones";
 import { Search, X } from "lucide-react";
 import { DomainBadge } from "./DomainBadge";
 

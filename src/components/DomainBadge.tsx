@@ -1,4 +1,4 @@
-import { Domain, domainBadgeColors, domainLabels } from "@/data/denverMilestones";
+import { Domain, domainBadgeColors, domainLabels } from "@/data/milestones";
 
 interface DomainBadgeProps {
   domain: Domain;
