@@ -1,4 +1,4 @@
-import { AgeGroup } from "@/data/denverMilestones";
+import { AgeGroup } from "@/data/milestones";
 
 interface AgeNavProps {
   ageGroups: AgeGroup[];

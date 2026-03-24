@@ -1,4 +1,4 @@
-import { Milestone, domainColors } from "@/data/denverMilestones";
+import { Milestone, domainColors } from "@/data/milestones";
 import { DomainBadge } from "./DomainBadge";
 
 interface MilestoneCardProps {

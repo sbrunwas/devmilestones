@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from "react";
-import { ageGroups, Domain } from "@/data/denverMilestones";
+import { ageGroups, Domain } from "@/data/milestones";
 import { AgeNav } from "@/components/AgeNav";
 import { DomainFilter } from "@/components/DomainFilter";
 import { MilestoneCard } from "@/components/MilestoneCard";
