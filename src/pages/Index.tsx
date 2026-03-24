@@ -9,7 +9,7 @@ const allDomains = new Set<Domain>([
   "gross-motor",
   "fine-motor",
   "self-help",
-  "problem-solving",
+  "cognitive",
   "social-emotional",
   "receptive-language",
   "expressive-language",
@@ -102,9 +102,9 @@ const Index = () => {
 
         <footer className="mt-12 border-t pt-6 pb-8">
           <p className="text-xs leading-relaxed text-muted-foreground">
-            Based on "Developmental Milestones" by Scharf, Scharf, & Stroustrup (Pediatrics in Review, 2016).
-            Published by the American Academy of Pediatrics. This tool is for reference purposes only and
-            should not replace professional developmental assessment.
+            Milestones are aligned with the CDC&apos;s 2022 Learn the Signs. Act Early. checklist updates.
+            This tool is for reference purposes only and should not replace professional developmental
+            assessment.
           </p>
         </footer>
       </main>

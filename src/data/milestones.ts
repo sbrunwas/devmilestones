@@ -14,8 +14,7 @@
 // - "Waves bye-bye" moved to 12m
 // - "Two-word phrases" moved to 24m
 // - "50 words" moved from 24m → 30m
-// - Removed: M-CHAT reference, echolalia as milestone, visual threat reflex,
-//   bear walks, intelligibility percentages as milestones
+// - Removed non-CDC checklist items from prior versions
 // - Added: CDC 2022 social-emotional autism-detection milestones (e.g.,
 //   "smiles on own to get attention" at 2m and 4m)
 // - Source: https://www.cdc.gov/act-early/milestones/index.html
@@ -57,7 +56,7 @@ export const domainColors: Record<Domain, string> = {
   "gross-motor": "bg-domain-gross-motor/20 text-foreground border-domain-gross-motor/40",
   "fine-motor": "bg-domain-fine-motor/20 text-foreground border-domain-fine-motor/40",
   "self-help": "bg-domain-self-help/20 text-foreground border-domain-self-help/40",
-  "cognitive": "bg-domain-problem-solving/20 text-foreground border-domain-problem-solving/40",
+  "cognitive": "bg-domain-cognitive/20 text-foreground border-domain-cognitive/40",
   "social-emotional": "bg-domain-social-emotional/20 text-foreground border-domain-social-emotional/40",
   "receptive-language": "bg-domain-receptive-language/20 text-foreground border-domain-receptive-language/40",
   "expressive-language": "bg-domain-expressive-language/20 text-foreground border-domain-expressive-language/40",
@@ -67,7 +66,7 @@ export const domainBadgeColors: Record<Domain, string> = {
   "gross-motor": "bg-domain-gross-motor/30 text-foreground",
   "fine-motor": "bg-domain-fine-motor/30 text-foreground",
   "self-help": "bg-domain-self-help/30 text-foreground",
-  "cognitive": "bg-domain-problem-solving/30 text-foreground",
+  "cognitive": "bg-domain-cognitive/30 text-foreground",
   "social-emotional": "bg-domain-social-emotional/30 text-foreground",
   "receptive-language": "bg-domain-receptive-language/30 text-foreground",
   "expressive-language": "bg-domain-expressive-language/30 text-foreground",
