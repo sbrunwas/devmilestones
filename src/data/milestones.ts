@@ -4,6 +4,7 @@
 // Key changes from previous version:
 // - Age groups now match CDC 2022 well-child visit checkpoints:
 //   2m, 4m, 6m, 9m, 12m, 15m, 18m, 24m, 30m, 3y, 4y, 5y
+// - Plus an additional 6-year reference group to preserve app coverage through age 6
 // - Milestones reflect what 75%+ of children do BY each age (not average age)
 // - Domains renamed to match CDC 2022: social-emotional, language, cognitive,
 //   gross-motor, fine-motor (receptive/expressive kept for clinical utility,
@@ -14,8 +15,7 @@
 // - "Waves bye-bye" moved to 12m
 // - "Two-word phrases" moved to 24m
 // - "50 words" moved from 24m → 30m
-// - Removed: M-CHAT reference, echolalia as milestone, visual threat reflex,
-//   bear walks, intelligibility percentages as milestones
+// - Removed non-CDC checklist items from prior versions
 // - Added: CDC 2022 social-emotional autism-detection milestones (e.g.,
 //   "smiles on own to get attention" at 2m and 4m)
 // - Source: https://www.cdc.gov/act-early/milestones/index.html
@@ -57,7 +57,7 @@ export const domainColors: Record<Domain, string> = {
   "gross-motor": "bg-domain-gross-motor/20 text-foreground border-domain-gross-motor/40",
   "fine-motor": "bg-domain-fine-motor/20 text-foreground border-domain-fine-motor/40",
   "self-help": "bg-domain-self-help/20 text-foreground border-domain-self-help/40",
-  "cognitive": "bg-domain-problem-solving/20 text-foreground border-domain-problem-solving/40",
+  "cognitive": "bg-domain-cognitive/20 text-foreground border-domain-cognitive/40",
   "social-emotional": "bg-domain-social-emotional/20 text-foreground border-domain-social-emotional/40",
   "receptive-language": "bg-domain-receptive-language/20 text-foreground border-domain-receptive-language/40",
   "expressive-language": "bg-domain-expressive-language/20 text-foreground border-domain-expressive-language/40",
@@ -67,7 +67,7 @@ export const domainBadgeColors: Record<Domain, string> = {
   "gross-motor": "bg-domain-gross-motor/30 text-foreground",
   "fine-motor": "bg-domain-fine-motor/30 text-foreground",
   "self-help": "bg-domain-self-help/30 text-foreground",
-  "cognitive": "bg-domain-problem-solving/30 text-foreground",
+  "cognitive": "bg-domain-cognitive/30 text-foreground",
   "social-emotional": "bg-domain-social-emotional/30 text-foreground",
   "receptive-language": "bg-domain-receptive-language/30 text-foreground",
   "expressive-language": "bg-domain-expressive-language/30 text-foreground",
@@ -483,6 +483,32 @@ export const ageGroups: AgeGroup[] = [
       m("Buttons some buttons", "fine-motor"),
       m("Hops on one foot", "gross-motor"),
       m("Dresses and undresses without help", "self-help"),
+    ],
+  },
+  {
+    id: "6y",
+    label: "6 Years",
+    sublabel: "School-Age",
+    milestones: [
+      // Social/Emotional
+      m("Wants to be like friends and may seek their approval", "social-emotional"),
+      m("Enjoys group games with rules and turn-taking", "social-emotional"),
+      m("Can usually tell fantasy from reality", "social-emotional"),
+
+      // Language/Communication
+      m("Describes events in order with enough detail to follow", "expressive-language"),
+      m("Asks about the meaning of unfamiliar words", "receptive-language"),
+      m("Uses complete sentences to explain ideas and plans", "expressive-language"),
+
+      // Cognitive
+      m("Counts and works with numbers up to 20", "cognitive"),
+      m("Solves simple addition and subtraction problems", "cognitive"),
+      m("Reads and writes short, simple sentences", "cognitive"),
+
+      // Movement/Physical
+      m("Skips, hops, and balances with improved coordination", "gross-motor"),
+      m("Prints first and last name more clearly", "fine-motor"),
+      m("Ties shoes independently", "self-help"),
     ],
   },
 ];
