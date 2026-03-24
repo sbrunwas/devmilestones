@@ -4,7 +4,7 @@ const allDomains: Domain[] = [
   "gross-motor",
   "fine-motor",
   "self-help",
-  "problem-solving",
+  "cognitive",
   "social-emotional",
   "receptive-language",
   "expressive-language",
@@ -23,9 +23,9 @@ const filterColors: Record<Domain, { active: string; inactive: string }> = {
     active: "bg-domain-self-help/30 border-domain-self-help/60 text-foreground",
     inactive: "bg-transparent border-border text-muted-foreground hover:border-domain-self-help/40",
   },
-  "problem-solving": {
-    active: "bg-domain-problem-solving/30 border-domain-problem-solving/60 text-foreground",
-    inactive: "bg-transparent border-border text-muted-foreground hover:border-domain-problem-solving/40",
+  "cognitive": {
+    active: "bg-domain-cognitive/30 border-domain-cognitive/60 text-foreground",
+    inactive: "bg-transparent border-border text-muted-foreground hover:border-domain-cognitive/40",
   },
   "social-emotional": {
     active: "bg-domain-social-emotional/30 border-domain-social-emotional/60 text-foreground",
