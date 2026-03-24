@@ -1,8 +1,31 @@
+// ============================================================
+// milestones.ts — Aligned to CDC 2022 "Learn the Signs. Act Early." update
+//
+// Key changes from previous version:
+// - Age groups now match CDC 2022 well-child visit checkpoints:
+//   2m, 4m, 6m, 9m, 12m, 15m, 18m, 24m, 30m, 3y, 4y, 5y
+// - Milestones reflect what 75%+ of children do BY each age (not average age)
+// - Domains renamed to match CDC 2022: social-emotional, language, cognitive,
+//   gross-motor, fine-motor (receptive/expressive kept for clinical utility,
+//   folded into "language" for CDC alignment)
+// - Crawling removed (CDC 2022 explicitly removed this)
+// - "Walks alone" moved from 12m → 15m
+// - "Says first word" moved to 12m
+// - "Waves bye-bye" moved to 12m
+// - "Two-word phrases" moved to 24m
+// - "50 words" moved from 24m → 30m
+// - Removed: M-CHAT reference, echolalia as milestone, visual threat reflex,
+//   bear walks, intelligibility percentages as milestones
+// - Added: CDC 2022 social-emotional autism-detection milestones (e.g.,
+//   "smiles on own to get attention" at 2m and 4m)
+// - Source: https://www.cdc.gov/act-early/milestones/index.html
+// ============================================================
+
 export type Domain =
   | "gross-motor"
   | "fine-motor"
   | "self-help"
-  | "problem-solving"
+  | "cognitive"
   | "social-emotional"
   | "receptive-language"
   | "expressive-language";
@@ -24,7 +47,7 @@ export const domainLabels: Record<Domain, string> = {
   "gross-motor": "Gross Motor",
   "fine-motor": "Fine Motor",
   "self-help": "Self-Help",
-  "problem-solving": "Problem-Solving",
+  "cognitive": "Cognitive",
   "social-emotional": "Social-Emotional",
   "receptive-language": "Receptive Language",
   "expressive-language": "Expressive Language",
@@ -34,7 +57,7 @@ export const domainColors: Record<Domain, string> = {
   "gross-motor": "bg-domain-gross-motor/20 text-foreground border-domain-gross-motor/40",
   "fine-motor": "bg-domain-fine-motor/20 text-foreground border-domain-fine-motor/40",
   "self-help": "bg-domain-self-help/20 text-foreground border-domain-self-help/40",
-  "problem-solving": "bg-domain-problem-solving/20 text-foreground border-domain-problem-solving/40",
+  "cognitive": "bg-domain-problem-solving/20 text-foreground border-domain-problem-solving/40",
   "social-emotional": "bg-domain-social-emotional/20 text-foreground border-domain-social-emotional/40",
   "receptive-language": "bg-domain-receptive-language/20 text-foreground border-domain-receptive-language/40",
   "expressive-language": "bg-domain-expressive-language/20 text-foreground border-domain-expressive-language/40",
@@ -44,7 +67,7 @@ export const domainBadgeColors: Record<Domain, string> = {
   "gross-motor": "bg-domain-gross-motor/30 text-foreground",
   "fine-motor": "bg-domain-fine-motor/30 text-foreground",
   "self-help": "bg-domain-self-help/30 text-foreground",
-  "problem-solving": "bg-domain-problem-solving/30 text-foreground",
+  "cognitive": "bg-domain-problem-solving/30 text-foreground",
   "social-emotional": "bg-domain-social-emotional/30 text-foreground",
   "receptive-language": "bg-domain-receptive-language/30 text-foreground",
   "expressive-language": "bg-domain-expressive-language/30 text-foreground",
@@ -58,598 +81,408 @@ const m = (title: string, domain: Domain): Milestone => ({
 });
 
 export const ageGroups: AgeGroup[] = [
-  {
-    id: "1m",
-    label: "1 Month",
-    sublabel: "Newborn",
-    milestones: [
-      m("Chin up in prone position", "gross-motor"),
-      m("Hands fisted near face", "fine-motor"),
-      m("Sucks well", "self-help"),
-      m("Gazes at black-white objects", "problem-solving"),
-      m("Discriminates mother's voice", "social-emotional"),
-      m("Startles to voice/sound", "receptive-language"),
-      m("Throaty noises", "expressive-language"),
-    ],
-  },
+  // ─────────────────────────────────────────────
+  // 2 MONTHS
+  // CDC 2022: cdc.gov/act-early/milestones/2-months.html
+  // ─────────────────────────────────────────────
   {
     id: "2m",
     label: "2 Months",
-    sublabel: "Early Infancy",
+    sublabel: "Newborn",
     milestones: [
-      m("Chest up in prone position", "gross-motor"),
-      m("Hands unfisted 50% of the time", "fine-motor"),
-      m("Opens mouth at sight of breast or bottle", "self-help"),
-      m("Visual threat present", "problem-solving"),
-      m("Reciprocal smiling", "social-emotional"),
-      m("Social smile (6 weeks)", "social-emotional"),
-      m("Alerts to voice/sound", "receptive-language"),
-      m("Coos", "expressive-language"),
-      m("Vowel-like noises", "expressive-language"),
+      // Social/Emotional
+      m("Calms down when spoken to or picked up", "social-emotional"),
+      m("Smiles when you talk or smile at her", "social-emotional"),
+      m("Smiles on his own to get your attention", "social-emotional"), // CDC 2022 addition — key ASD marker
+      m("Looks at you, moves, or makes sounds to get or keep your attention", "social-emotional"),
+
+      // Language/Communication
+      m("Makes sounds other than crying, such as cooing (oooo, aahh)", "expressive-language"),
+      m("Reacts to loud sounds", "receptive-language"),
+      m("Turns head toward the sound of your voice", "receptive-language"),
+
+      // Cognitive
+      m("Watches you as you move", "cognitive"),
+      m("Looks at a toy for a few seconds", "cognitive"),
+      m("Opens mouth when sees breast or bottle (if breastfed or bottle-fed)", "cognitive"),
+
+      // Movement/Physical
+      m("Holds head up when on tummy", "gross-motor"),
+      m("Moves both arms and both legs", "gross-motor"),
+      m("Opens hands briefly", "fine-motor"),
     ],
   },
-  {
-    id: "3m",
-    label: "3 Months",
-    sublabel: "Early Infancy",
-    milestones: [
-      m("Props on forearms in prone position", "gross-motor"),
-      m("Hands unfisted 50% of the time", "fine-motor"),
-      m("Brings hands to mouth", "self-help"),
-      m("Reaches for face", "problem-solving"),
-      m("Expression of disgust (sour taste, loud sound)", "social-emotional"),
-      m("Regards speaker", "receptive-language"),
-      m("Chuckles", "expressive-language"),
-      m("Vocalizes when talked to", "expressive-language"),
-    ],
-  },
+
+  // ─────────────────────────────────────────────
+  // 4 MONTHS
+  // CDC 2022: cdc.gov/act-early/milestones/4-months.html
+  // ─────────────────────────────────────────────
   {
     id: "4m",
     label: "4 Months",
-    sublabel: "Infancy",
+    sublabel: "Early Infancy",
     milestones: [
-      m("Sits with trunk support", "gross-motor"),
-      m("Hands held predominantly open", "fine-motor"),
-      m("Briefly holds onto breast or bottle", "self-help"),
-      m("Mouths objects", "problem-solving"),
-      m("Smiles spontaneously at pleasurable sight/sound", "social-emotional"),
-      m("Orients head in direction of a voice", "receptive-language"),
-      m("Laughs out loud", "expressive-language"),
-      m("Vocalizes when alone", "expressive-language"),
-      m("Stops crying to soothing voice", "receptive-language"),
+      // Social/Emotional
+      m("Smiles on his own to get your attention", "social-emotional"), // CDC 2022 addition — key ASD marker
+      m("Chuckles (not yet a full laugh) when you try to make her laugh", "social-emotional"),
+      m("Looks at you, moves, or makes sounds to get or keep your attention", "social-emotional"),
+
+      // Language/Communication
+      m("Makes sounds like 'oooo' and 'aahh' (cooing)", "expressive-language"),
+      m("Makes sounds back when you talk to him", "expressive-language"),
+      m("Turns head towards the sound of your voice", "receptive-language"),
+
+      // Cognitive
+      m("Opens mouth when hungry and sees breast or bottle", "cognitive"),
+      m("Looks at his hands with interest", "cognitive"),
+
+      // Movement/Physical
+      m("Holds head steady without support when you are holding him", "gross-motor"),
+      m("Holds head and chest up when lying on tummy", "gross-motor"),
+      m("Reaches for a toy with one hand", "gross-motor"),
+      m("Uses both hands to swipe at toys", "fine-motor"),
+      m("Brings hands to mouth", "fine-motor"),
     ],
   },
-  {
-    id: "5m",
-    label: "5 Months",
-    sublabel: "Infancy",
-    milestones: [
-      m("Sits with pelvic support", "gross-motor"),
-      m("Palmar grasps cube", "fine-motor"),
-      m("Gums/mouths pureed food", "self-help"),
-      m("Turns head to look for dropped spoon", "problem-solving"),
-      m("Recognizes caregiver visually", "social-emotional"),
-      m("Begins to respond to name", "receptive-language"),
-      m("Says \"Ah-goo\"", "expressive-language"),
-      m("Razzes, squeals", "expressive-language"),
-      m("Expresses anger with sounds other than crying", "expressive-language"),
-    ],
-  },
+
+  // ─────────────────────────────────────────────
+  // 6 MONTHS
+  // CDC 2022: cdc.gov/act-early/milestones/6-months.html
+  // ─────────────────────────────────────────────
   {
     id: "6m",
     label: "6 Months",
     sublabel: "Infancy",
     milestones: [
-      m("Sits momentarily propped on hands", "gross-motor"),
-      m("Transfers hand-hand", "fine-motor"),
-      m("Feeds self crackers", "self-help"),
-      m("Touches reflection and vocalizes", "problem-solving"),
-      m("Places hands on bottle", "self-help"),
-      m("Removes cloth on face", "problem-solving"),
-      m("Bangs and shakes toys", "problem-solving"),
-      m("Stops momentarily to \"no\"", "receptive-language"),
-      m("Gestures for \"up\"", "expressive-language"),
-      m("Reduplicative babble with consonants", "expressive-language"),
-      m("Listens, then vocalizes when adult stops", "expressive-language"),
-      m("Smiles/vocalizes to mirror", "social-emotional"),
+      // Social/Emotional
+      m("Knows familiar people", "social-emotional"),
+      m("Likes to look at herself in a mirror", "social-emotional"),
+      m("Laughs", "social-emotional"),
+
+      // Language/Communication
+      m("Takes turns making sounds with you", "expressive-language"), // CDC 2022 addition
+      m("Blows 'raspberries' (sticks out tongue and blows)", "expressive-language"), // CDC 2022 addition
+      m("Makes squealing noises", "expressive-language"),
+      m("Turns to look where a sound came from", "receptive-language"),
+
+      // Cognitive
+      m("Puts things in her mouth to explore them", "cognitive"),
+      m("Reaches to grab a toy she wants", "cognitive"),
+      m("Closes lips to show she doesn't want more food", "cognitive"),
+
+      // Movement/Physical
+      m("Rolls from tummy to back", "gross-motor"), // rolling moved from 4m to 6m in CDC 2022
+      m("Pushes up with straight arms when on tummy", "gross-motor"),
+      m("Leans on hands to support himself when sitting", "gross-motor"),
+      m("Passes a toy from one hand to the other", "fine-motor"),
     ],
   },
-  {
-    id: "7m",
-    label: "7 Months",
-    sublabel: "Infancy",
-    milestones: [
-      m("Bounces when held", "gross-motor"),
-      m("Radial-palmar grasp", "fine-motor"),
-      m("Refuses excess food", "self-help"),
-      m("Explores different aspects of toy", "problem-solving"),
-      m("Looks from object to parent and back when wanting help", "social-emotional"),
-      m("Attends to music", "receptive-language"),
-      m("Increasing variety of syllables", "expressive-language"),
-    ],
-  },
-  {
-    id: "8m",
-    label: "8 Months",
-    sublabel: "Infancy",
-    milestones: [
-      m("Gets into sitting position", "gross-motor"),
-      m("Bangs spoon after demonstration", "fine-motor"),
-      m("Holds own bottle", "self-help"),
-      m("Seeks object after it falls silently to the floor", "problem-solving"),
-      m("Lets parents know when happy versus upset", "social-emotional"),
-      m("Engages in gaze monitoring", "social-emotional"),
-      m("Says \"Dada\" (nonspecific)", "expressive-language"),
-      m("Responds to \"Come here\"", "receptive-language"),
-      m("Echolalia (8 to 30 months)", "expressive-language"),
-      m("Shakes head for \"no\"", "expressive-language"),
-    ],
-  },
+
+  // ─────────────────────────────────────────────
+  // 9 MONTHS
+  // CDC 2022: cdc.gov/act-early/milestones/9-months.html
+  // ─────────────────────────────────────────────
   {
     id: "9m",
     label: "9 Months",
     sublabel: "Late Infancy",
     milestones: [
-      m("\"Stands\" on feet and hands", "gross-motor"),
-      m("Begins creeping", "gross-motor"),
-      m("Pulls to stand", "gross-motor"),
-      m("Bear walks (all four limbs straight)", "gross-motor"),
-      m("Radial-digital grasp of cube", "fine-motor"),
-      m("Bangs two cubes together", "fine-motor"),
-      m("Bites, chews cookie", "self-help"),
-      m("Inspects bell", "problem-solving"),
-      m("Pulls string to obtain ring", "problem-solving"),
-      m("Uses sounds to get attention", "social-emotional"),
-      m("Separation anxiety", "social-emotional"),
-      m("Enjoys gesture games", "receptive-language"),
-      m("Orients to name well", "receptive-language"),
-      m("Says \"Mama\" (nonspecific)", "expressive-language"),
-      m("Nonreduplicative babble", "expressive-language"),
-      m("Imitates sounds", "expressive-language"),
+      // Social/Emotional
+      m("Is shy, clingy, or fearful around strangers", "social-emotional"),
+      m("Shows several facial expressions like happy, sad, angry, and surprised", "social-emotional"),
+      m("Looks when you call her name", "social-emotional"),
+      m("Reacts when you leave (looks, reaches for you, or cries)", "social-emotional"),
+      m("Smiles or laughs when you play peek-a-boo", "social-emotional"),
+
+      // Language/Communication
+      m("Makes different sounds like 'mamama' and 'bababa'", "expressive-language"), // CDC 2022 specific phrasing
+      m("Lifts arms up to be picked up", "expressive-language"),
+      m("Looks at familiar objects or people when you name them", "receptive-language"),
+
+      // Cognitive
+      m("Looks for objects when dropped out of sight (e.g., spoon falls)", "cognitive"),
+      m("Bangs two things together", "cognitive"),
+
+      // Movement/Physical
+      m("Gets to a sitting position by herself", "gross-motor"),
+      m("Moves things from one hand to the other hand", "fine-motor"),
+      m("Uses fingers to rake food towards himself", "fine-motor"),
+      m("Sits without support", "gross-motor"),
     ],
   },
-  {
-    id: "10m",
-    label: "10 Months",
-    sublabel: "Late Infancy",
-    milestones: [
-      m("Creeps well", "gross-motor"),
-      m("Cruises around furniture using two hands", "gross-motor"),
-      m("Stands with one hand held", "gross-motor"),
-      m("Walks with two hands held", "gross-motor"),
-      m("Clumsy release of cube", "fine-motor"),
-      m("Inferior pincer grasp of pellet", "fine-motor"),
-      m("Isolates index finger and pokes", "fine-motor"),
-      m("Drinks from cup held for child", "self-help"),
-      m("Uncovers toy under cloth", "problem-solving"),
-      m("Experiences fear", "social-emotional"),
-      m("Enjoys peek-a-boo", "social-emotional"),
-      m("Waves \"bye-bye\" back", "social-emotional"),
-      m("Orients to bell", "receptive-language"),
-      m("Says \"Dada\" (specific)", "expressive-language"),
-      m("Waves \"bye-bye\"", "expressive-language"),
-    ],
-  },
-  {
-    id: "11m",
-    label: "11 Months",
-    sublabel: "Late Infancy",
-    milestones: [
-      m("Pivots in sitting position", "gross-motor"),
-      m("Cruises furniture using one hand", "gross-motor"),
-      m("Stands for a few seconds", "gross-motor"),
-      m("Walks with one hand held", "gross-motor"),
-      m("Throws objects", "fine-motor"),
-      m("Stirs with spoon", "fine-motor"),
-      m("Cooperates with dressing", "self-help"),
-      m("Finds toy under cup", "problem-solving"),
-      m("Gives objects to adult for action after demonstration", "problem-solving"),
-      m("Stops activity when told \"no\"", "social-emotional"),
-      m("Bounces to music", "social-emotional"),
-      m("Looks at pictures in book", "receptive-language"),
-      m("Says first word", "expressive-language"),
-      m("Vocalizes to songs", "expressive-language"),
-    ],
-  },
+
+  // ─────────────────────────────────────────────
+  // 12 MONTHS (1 YEAR)
+  // CDC 2022: cdc.gov/act-early/milestones/1-year.html
+  // NOTE: "Walks alone" moved to 15 months in CDC 2022
+  // ─────────────────────────────────────────────
   {
     id: "12m",
     label: "12 Months",
     sublabel: "1 Year",
     milestones: [
-      m("Stands well with arms high, legs splayed", "gross-motor"),
-      m("Posterior protection", "gross-motor"),
-      m("Independent steps", "gross-motor"),
-      m("Scribbles after demonstration", "fine-motor"),
-      m("Fine pincer grasp of pellet", "fine-motor"),
-      m("Holds crayon", "fine-motor"),
-      m("Finger feeds part of meal", "self-help"),
-      m("Takes off hat", "self-help"),
-      m("Rattles spoon in cup", "problem-solving"),
-      m("Lifts box lid to find toy", "problem-solving"),
-      m("Shows objects to parent to share interest", "social-emotional"),
-      m("Follows one-step command with gesture", "receptive-language"),
-      m("Points to get desired object (proto-imperative pointing)", "expressive-language"),
-      m("Recognizes names of two objects and looks when named", "expressive-language"),
-      m("Uses several gestures with vocalizing", "expressive-language"),
+      // Social/Emotional
+      m("Plays games with you, like pat-a-cake", "social-emotional"),
+      m("Waves bye-bye", "social-emotional"), // moved from 10m to 12m per CDC 2022
+      m("Calls a parent 'mama' or 'dada' or another special name", "expressive-language"), // CDC 2022
+      m("Understands 'no' (pauses briefly or stops when you say it)", "receptive-language"),
+
+      // Language/Communication
+      m("Says 'mama,' 'dada,' and exclamations like 'uh-oh!'", "expressive-language"), // CDC 2022
+      m("Tries to say words you say", "expressive-language"),
+      m("Points to show you something interesting", "expressive-language"), // proto-declarative point — CDC 2022
+
+      // Cognitive
+      m("Puts something in a container like a block in a cup", "cognitive"),
+      m("Looks for things she hides, like a toy under a blanket", "cognitive"),
+
+      // Movement/Physical
+      m("Pulls up to stand", "gross-motor"),
+      m("Walks, holding on to furniture", "gross-motor"),
+      m("Drinks from a cup without a lid when you hold it", "self-help"), // CDC 2022
+      m("Picks up things between thumb and pointer finger", "fine-motor"), // pincer grasp
     ],
   },
-  {
-    id: "13m",
-    label: "13 Months",
-    sublabel: "Toddler",
-    milestones: [
-      m("Walks with arms high and out (high guard)", "gross-motor"),
-      m("Attempts to release pellet in bottle", "fine-motor"),
-      m("Drinks from cup with some spilling", "self-help"),
-      m("Dangles ring by string", "problem-solving"),
-      m("Shows desire to please caregiver", "social-emotional"),
-      m("Reaches around clear barrier to obtain object", "problem-solving"),
-      m("Solitary play", "social-emotional"),
-      m("Functional play", "receptive-language"),
-      m("Looks appropriately when asked \"Where's the ball?\"", "receptive-language"),
-      m("Immature jargoning: inflection without real words", "expressive-language"),
-    ],
-  },
-  {
-    id: "14m",
-    label: "14 Months",
-    sublabel: "Toddler",
-    milestones: [
-      m("Stands without pulling up", "gross-motor"),
-      m("Falls by collapse", "gross-motor"),
-      m("Walks well", "gross-motor"),
-      m("Imitates back and forth scribble", "fine-motor"),
-      m("Adds third cube to a two-cube tower", "fine-motor"),
-      m("Removes socks/shoes", "self-help"),
-      m("Chews well", "self-help"),
-      m("Puts spoon in mouth (turns over)", "problem-solving"),
-      m("Dumps pellet out of bottle after demonstration", "problem-solving"),
-      m("Points at object to express interest (proto-declarative pointing)", "social-emotional"),
-      m("Follows one-step command without gesture", "receptive-language"),
-      m("Purposeful exploration of toys through trial and error", "problem-solving"),
-    ],
-  },
+
+  // ─────────────────────────────────────────────
+  // 15 MONTHS
+  // CDC 2022 ADDITION: cdc.gov/act-early/milestones/15-months.html
+  // "Walks alone" moved HERE from 12m in CDC 2022
+  // ─────────────────────────────────────────────
   {
     id: "15m",
     label: "15 Months",
     sublabel: "Toddler",
     milestones: [
-      m("Stoops to pick up toy", "gross-motor"),
-      m("Creeps up stairs", "gross-motor"),
-      m("Runs stiff-legged", "gross-motor"),
-      m("Walks carrying toy", "gross-motor"),
-      m("Builds three to four-cube tower", "fine-motor"),
-      m("Places 10 cubes in cup", "fine-motor"),
-      m("Uses spoon with some spilling", "self-help"),
-      m("Attempts to brush own hair", "self-help"),
-      m("Turns pages in book", "problem-solving"),
-      m("Shows empathy", "social-emotional"),
-      m("Hugs adult in reciprocation", "social-emotional"),
-      m("Recognizes toy requires activation; hands to adult", "receptive-language"),
-      m("Points to one body part", "expressive-language"),
-      m("Uses three to five words", "expressive-language"),
-      m("Mature jargoning with real words", "expressive-language"),
-      m("Gets object from another room upon demand", "receptive-language"),
+      // Social/Emotional
+      m("Copies other children while playing, like taking toys out of a container when another child does", "social-emotional"),
+      m("Shows you an object she likes", "social-emotional"),
+      m("Claps when excited", "social-emotional"),
+      m("Hugs stuffed doll or other toy", "social-emotional"),
+      m("Shows you affection (hugs, cuddles, or kisses you)", "social-emotional"),
+
+      // Language/Communication
+      m("Tries to say one or two words besides 'mama' or 'dada'", "expressive-language"), // CDC 2022
+      m("Looks at a familiar object when you name it", "receptive-language"), // CDC 2022
+      m("Follows directions given with both a gesture and words", "receptive-language"),
+      m("Points to ask for something or get help", "expressive-language"),
+
+      // Cognitive
+      m("Tries to use things the right way, like a phone or a cup", "cognitive"),
+      m("Stacks at least two small objects like blocks", "cognitive"),
+
+      // Movement/Physical
+      m("Takes a few steps on his own", "gross-motor"), // walks alone — moved here from 12m per CDC 2022
+      m("Uses fingers to feed herself some food", "fine-motor"),
     ],
   },
-  {
-    id: "16m",
-    label: "16 Months",
-    sublabel: "Toddler",
-    milestones: [
-      m("Stands on one foot with slight support", "gross-motor"),
-      m("Walks backwards", "gross-motor"),
-      m("Walks up stairs with one hand held", "gross-motor"),
-      m("Throws ball while standing", "gross-motor"),
-      m("Puts several round pegs in board with urging", "fine-motor"),
-      m("Scribbles spontaneously", "fine-motor"),
-      m("Picks up and drinks from cup", "self-help"),
-      m("Fetches and carries objects (same room)", "self-help"),
-      m("Dumps pellet out without demonstration", "problem-solving"),
-      m("Finds toy hidden under layers of covers", "problem-solving"),
-      m("Kisses by touching lips to skin", "social-emotional"),
-      m("Periodically visually relocates caregiver", "social-emotional"),
-      m("Self-conscious; embarrassed when observed", "social-emotional"),
-      m("Understands simple commands", "receptive-language"),
-      m("Uses 5 to 10 words", "expressive-language"),
-    ],
-  },
+
+  // ─────────────────────────────────────────────
+  // 18 MONTHS
+  // CDC 2022: cdc.gov/act-early/milestones/18-months.html
+  // ─────────────────────────────────────────────
   {
     id: "18m",
     label: "18 Months",
     sublabel: "Toddler",
     milestones: [
-      m("Creeps down stairs", "gross-motor"),
-      m("Runs well", "gross-motor"),
-      m("Seats self in small chair", "gross-motor"),
-      m("Throws ball while standing", "gross-motor"),
-      m("Makes four-cube tower", "fine-motor"),
-      m("Crudely imitates vertical stroke", "fine-motor"),
-      m("Removes garment", "self-help"),
-      m("Gets onto adult chair unaided", "self-help"),
-      m("Matches pairs of objects", "problem-solving"),
-      m("Replaces circle in form board after rotation", "problem-solving"),
-      m("Passes M-CHAT", "social-emotional"),
-      m("Engages in pretend play with other people", "social-emotional"),
-      m("Begins to show shame and possessiveness", "social-emotional"),
-      m("Points to two of three objects when named", "receptive-language"),
-      m("Uses 10 to 25 words", "expressive-language"),
-      m("Uses giant words (all gone, stop that)", "expressive-language"),
+      // Social/Emotional
+      m("Moves away from you, but looks to make sure you are close by", "social-emotional"),
+      m("Points to show you something interesting", "social-emotional"),
+      m("Puts hands out for you to wash them", "social-emotional"),
+      m("Looks at you when you call her name", "social-emotional"),
+      m("Likes to hand things to others as play", "social-emotional"),
+
+      // Language/Communication
+      m("Tries to say three or more words besides 'mama' or 'dada'", "expressive-language"), // CDC 2022
+      m("Follows one-step directions without any gestures, like 'sit down'", "receptive-language"),
+
+      // Cognitive
+      m("Copies you doing chores, like sweeping with a broom", "cognitive"), // CDC 2022 addition
+      m("Plays with toys in a simple way, like pushing a toy car", "cognitive"),
+
+      // Movement/Physical
+      m("Walks without holding on to anyone or anything", "gross-motor"),
+      m("Scribbles", "fine-motor"),
+      m("Drinks from a cup without a lid and may spill sometimes", "self-help"),
+      m("Feeds herself with her fingers", "self-help"),
+      m("Tries to use a spoon", "self-help"),
+      m("Climbs on and off a couch or chair without help", "gross-motor"),
     ],
   },
-  {
-    id: "20m",
-    label: "20 Months",
-    sublabel: "Toddler",
-    milestones: [
-      m("Squats in play", "gross-motor"),
-      m("Carries large object", "gross-motor"),
-      m("Walks downstairs with one hand held", "gross-motor"),
-      m("Completes round peg board without urging", "fine-motor"),
-      m("Makes five to six-cube tower", "fine-motor"),
-      m("Places only edibles in mouth", "self-help"),
-      m("Feeds self with spoon entire meal", "self-help"),
-      m("Deduces location of hidden object", "problem-solving"),
-      m("Begins to have thoughts about feelings", "social-emotional"),
-      m("Engages in tea party with stuffed animals", "social-emotional"),
-      m("Kisses with pucker", "social-emotional"),
-      m("Points to three pictures when named", "receptive-language"),
-      m("Begins to understand her/him/me", "receptive-language"),
-      m("Holophrases", "expressive-language"),
-      m("Two-word combinations", "expressive-language"),
-      m("Answers requests with \"no\"", "expressive-language"),
-    ],
-  },
-  {
-    id: "22m",
-    label: "22 Months",
-    sublabel: "Toddler",
-    milestones: [
-      m("Walks up stairs holding rail, both feet on each step", "gross-motor"),
-      m("Kicks ball with demonstration", "gross-motor"),
-      m("Walks with one foot on walking board", "gross-motor"),
-      m("Closes box with lid", "fine-motor"),
-      m("Imitates vertical line", "fine-motor"),
-      m("Unzips zippers", "fine-motor"),
-      m("Uses spoon well", "self-help"),
-      m("Drinks from cup well", "self-help"),
-      m("Puts shoes on partway", "self-help"),
-      m("Completes form board", "problem-solving"),
-      m("Watches other children intensely", "social-emotional"),
-      m("Begins to show defiant behavior", "social-emotional"),
-      m("Points to four to five pictures when named", "receptive-language"),
-      m("Asks for more", "receptive-language"),
-      m("Uses 25 to 50 words", "expressive-language"),
-      m("Adds one to two words/week", "expressive-language"),
-    ],
-  },
+
+  // ─────────────────────────────────────────────
+  // 24 MONTHS (2 YEARS)
+  // CDC 2022: cdc.gov/act-early/milestones/2-years.html
+  // "Two-word phrases" is a 24m milestone per CDC 2022
+  // "50 words" moved to 30m per CDC 2022
+  // ─────────────────────────────────────────────
   {
     id: "24m",
     label: "24 Months",
     sublabel: "2 Years",
     milestones: [
-      m("Walks down stairs holding rail, both feet on each step", "gross-motor"),
-      m("Kicks ball without demonstration", "gross-motor"),
-      m("Throws overhand", "gross-motor"),
-      m("Makes a single-line \"train\" of cubes", "fine-motor"),
-      m("Imitates circle", "fine-motor"),
-      m("Sucks through a straw", "fine-motor"),
-      m("Opens door using knob", "self-help"),
-      m("Takes off clothes without buttons", "self-help"),
-      m("Pulls off pants", "self-help"),
-      m("Sorts objects", "problem-solving"),
-      m("Matches objects to pictures", "problem-solving"),
-      m("Parallel play", "social-emotional"),
-      m("Begins to mask emotions for social etiquette", "social-emotional"),
-      m("Follows two-step command", "receptive-language"),
-      m("Two-word sentence (noun + verb)", "expressive-language"),
-      m("Telegraphic speech", "expressive-language"),
-      m("Uses 50+ words", "expressive-language"),
-      m("50% intelligibility", "expressive-language"),
-      m("Refers to self by name", "expressive-language"),
-      m("Names three pictures", "expressive-language"),
+      // Social/Emotional
+      m("Notices when others are hurt or upset, like pausing or looking sad when someone is crying", "social-emotional"),
+      m("Looks at your face to see how to react in a new situation", "social-emotional"),
+
+      // Language/Communication
+      m("Points to things in a book when you ask, like 'where is the bear?'", "receptive-language"),
+      m("Says at least two words together, like 'more milk'", "expressive-language"), // CDC 2022 — 24m milestone
+      m("Points to at least two body parts when you ask", "receptive-language"),
+      m("Uses more gestures than just waving and pointing (e.g., blows a kiss)", "expressive-language"),
+
+      // Cognitive
+      m("Holds something in one hand while using the other hand", "cognitive"),
+      m("Tries to use switches, knobs, or buttons on a toy", "cognitive"),
+      m("Plays with more than one toy at the same time", "cognitive"),
+
+      // Movement/Physical
+      m("Kicks a ball", "gross-motor"),
+      m("Runs", "gross-motor"),
+      m("Walks (not climbs) up a few stairs with or without help", "gross-motor"),
+      m("Eats with a spoon", "self-help"),
     ],
   },
-  {
-    id: "28m",
-    label: "28 Months",
-    sublabel: "Toddler",
-    milestones: [
-      m("Jumps from bottom step with one foot leading", "gross-motor"),
-      m("Walks on toes after demonstration", "gross-motor"),
-      m("Walks backward 10 steps", "gross-motor"),
-      m("Strings large beads awkwardly", "fine-motor"),
-      m("Unscrews jar lid", "fine-motor"),
-      m("Turns paper pages (often several at once)", "fine-motor"),
-      m("Holds self and verbalizes toilet needs", "self-help"),
-      m("Pulls pants up with assistance", "self-help"),
-      m("Matches shapes", "problem-solving"),
-      m("Matches colors", "problem-solving"),
-      m("Reduction in separation anxiety", "social-emotional"),
-      m("Understands \"just one\"", "receptive-language"),
-      m("Repeats two digits", "expressive-language"),
-      m("Begins to use pronouns (I, me, you)", "expressive-language"),
-      m("Names 10 to 15 pictures", "expressive-language"),
-    ],
-  },
+
+  // ─────────────────────────────────────────────
+  // 30 MONTHS
+  // CDC 2022 ADDITION: cdc.gov/act-early/milestones/30-months.html
+  // "50 words" is the key language milestone here per CDC 2022
+  // ─────────────────────────────────────────────
   {
     id: "30m",
     label: "30 Months",
     sublabel: "2½ Years",
     milestones: [
-      m("Walks up stairs with rail, alternating feet", "gross-motor"),
-      m("Jumps in place", "gross-motor"),
-      m("Stands with both feet on balance beam", "gross-motor"),
-      m("Walks with one foot on balance beam", "gross-motor"),
-      m("Makes eight-cube tower", "fine-motor"),
-      m("Makes a \"train\" of cubes with a stack", "fine-motor"),
-      m("Washes hands", "self-help"),
-      m("Puts things away", "self-help"),
-      m("Brushes teeth with assistance", "self-help"),
-      m("Replaces circle in form board (little trial and error)", "problem-solving"),
-      m("Points to small details in pictures", "problem-solving"),
-      m("Imitates adult activities (sweeping, phone)", "social-emotional"),
-      m("Understands action words", "receptive-language"),
-      m("Echolalia and jargoning gone", "receptive-language"),
-      m("Follows two prepositions", "receptive-language"),
-      m("Names objects by use", "expressive-language"),
-      m("Refers to self with correct pronoun", "expressive-language"),
-      m("Recites parts of well-known story", "expressive-language"),
+      // Social/Emotional
+      m("Plays next to other children and sometimes plays with them", "social-emotional"),
+      m("Shows you what she can do by saying 'look at me!'", "social-emotional"),
+      m("Follows simple routines when told, like helping to pick up toys when you say 'it's clean-up time'", "social-emotional"),
+
+      // Language/Communication
+      m("Says about 50 words", "expressive-language"), // moved from 24m to 30m per CDC 2022
+      m("Says two or more words together with one action word, like 'doggie run'", "expressive-language"),
+      m("Names things in a book when you point and ask 'what is this?'", "expressive-language"), // CDC 2022
+      m("Says first name when asked", "expressive-language"),
+      m("Understands 'on,' 'in,' and 'under'", "receptive-language"),
+
+      // Cognitive
+      m("Uses things to pretend, like feeding a block to a doll as if it's food", "cognitive"),
+      m("Shows simple problem-solving, like standing on a small stool to reach something", "cognitive"),
+      m("Follows two-step instructions, like 'put the toy down and wash your hands'", "cognitive"),
+      m("Identifies at least one color when asked 'what color is this?'", "cognitive"),
+
+      // Movement/Physical
+      m("Uses hands to twist things, like turning doorknobs or unscrewing lids", "fine-motor"),
+      m("Takes some clothes off by himself, like loose pants or an open jacket", "self-help"),
+      m("Jumps off the ground with both feet", "gross-motor"),
+      m("Turns book pages, one at a time, when you read to her", "fine-motor"),
     ],
   },
-  {
-    id: "33m",
-    label: "33 Months",
-    sublabel: "Preschool",
-    milestones: [
-      m("Walks swinging arms opposite of legs (synchronous gait)", "gross-motor"),
-      m("Makes 9 to 10-cube tower", "fine-motor"),
-      m("Puts six square pegs in pegboard", "fine-motor"),
-      m("Toilet trained", "self-help"),
-      m("Puts on coat unassisted", "self-help"),
-      m("Points to self in photos", "problem-solving"),
-      m("Points to body parts based on function", "problem-solving"),
-      m("Begins to take turns", "social-emotional"),
-      m("Tries to help with household tasks", "social-emotional"),
-      m("Understands three prepositions", "receptive-language"),
-      m("Points to objects by use", "receptive-language"),
-      m("Gives first and last name", "expressive-language"),
-      m("Counts to 3", "expressive-language"),
-      m("Begins to use past tense", "expressive-language"),
-      m("Enjoys being read to (short books)", "expressive-language"),
-    ],
-  },
+
+  // ─────────────────────────────────────────────
+  // 3 YEARS
+  // CDC 2022: cdc.gov/act-early/milestones/3-years.html
+  // ─────────────────────────────────────────────
   {
     id: "3y",
     label: "3 Years",
     sublabel: "Preschool",
     milestones: [
-      m("Balances on one foot for 3 seconds", "gross-motor"),
-      m("Goes up stairs, alternating feet, no rail", "gross-motor"),
-      m("Pedals tricycle", "gross-motor"),
-      m("Walks heel to toe", "gross-motor"),
-      m("Catches ball with stiff arms", "gross-motor"),
-      m("Copies circle", "fine-motor"),
-      m("Cuts with scissors: side-to-side (awkwardly)", "fine-motor"),
-      m("Strings small beads well", "fine-motor"),
-      m("Independent eating", "self-help"),
-      m("Pours liquid from one container to another", "self-help"),
-      m("Puts on shoes without laces", "self-help"),
-      m("Unbuttons", "self-help"),
-      m("Draws a two to three-part person", "problem-solving"),
-      m("Understands long/short, big/small, more/less", "problem-solving"),
-      m("Knows own gender", "problem-solving"),
-      m("Fears imaginary things", "social-emotional"),
-      m("Imaginative play", "social-emotional"),
-      m("Uses words to describe what someone else is thinking", "receptive-language"),
-      m("Names body parts with function", "receptive-language"),
-      m("Uses 200+ words", "expressive-language"),
-      m("Three-word sentences", "expressive-language"),
-      m("Uses pronouns correctly", "expressive-language"),
-      m("75% intelligibility", "expressive-language"),
-      m("Uses plurals", "expressive-language"),
+      // Social/Emotional
+      m("Calms down within 10 minutes after you leave her, like at a childcare drop-off", "social-emotional"),
+      m("Notices other children and joins them to play", "social-emotional"),
+
+      // Language/Communication
+      m("Talks with you in conversation using at least two back-and-forth exchanges", "expressive-language"),
+      m("Asks 'who,' 'what,' 'where,' or 'why' questions, like 'where is daddy?'", "expressive-language"),
+      m("Says what action is happening in a picture or book when asked, like 'running' or 'eating'", "expressive-language"),
+      m("Says first name, last name, and age", "expressive-language"),
+      m("Talks well enough for others to understand, most of the time", "expressive-language"),
+      m("Follows instructions with two or three steps, like 'go to your room, pick up your stuffed animals, and bring them here'", "receptive-language"),
+      m("Understands 'on,' 'in,' and 'under'", "receptive-language"),
+
+      // Cognitive
+      m("Draws a circle when you show her how", "cognitive"),
+      m("Avoids touching hot objects, like a stove, when you warn her", "cognitive"),
+
+      // Movement/Physical
+      m("Strings items together, like large beads or macaroni", "fine-motor"),
+      m("Puts on some clothing by himself, like loose pants or a jacket", "self-help"),
+      m("Uses a fork", "self-help"),
+      m("Pedals a tricycle", "gross-motor"),
+      m("Runs, catches a large ball most of the time", "gross-motor"),
     ],
   },
+
+  // ─────────────────────────────────────────────
+  // 4 YEARS
+  // CDC 2022: cdc.gov/act-early/milestones/4-years.html
+  // ─────────────────────────────────────────────
   {
     id: "4y",
     label: "4 Years",
     sublabel: "Preschool",
     milestones: [
-      m("Balances on one foot 4 to 8 seconds", "gross-motor"),
-      m("Hops on one foot two to three times", "gross-motor"),
-      m("Standing broad jump: 1 to 2 feet", "gross-motor"),
-      m("Gallops", "gross-motor"),
-      m("Throws ball overhand 10 feet", "gross-motor"),
-      m("Catches bounced ball (4½ yrs)", "gross-motor"),
-      m("Copies square", "fine-motor"),
-      m("Ties single knot", "fine-motor"),
-      m("Cuts 5-inch circle", "fine-motor"),
-      m("Uses tongs to transfer", "fine-motor"),
-      m("Goes to toilet alone", "self-help"),
-      m("Wipes after bowel movement", "self-help"),
-      m("Washes face/hands", "self-help"),
-      m("Draws a four to six-part person", "problem-solving"),
-      m("Can give amounts (usually less than 5)", "problem-solving"),
-      m("Simple analogies", "problem-solving"),
-      m("Deception: interested in \"tricking\" others", "social-emotional"),
-      m("Follows three-step commands", "receptive-language"),
-      m("Points to things that are same versus different", "receptive-language"),
-      m("Uses 300 to 1,000 words", "expressive-language"),
-      m("Tells stories", "expressive-language"),
-      m("100% intelligibility", "expressive-language"),
-      m("Uses \"feeling\" words", "expressive-language"),
-      m("Understands adjectives", "expressive-language"),
+      // Social/Emotional
+      m("Pretends to be something else during play (teacher, superhero, dog)", "social-emotional"),
+      m("Comforts others who are hurt or sad, like hugging a crying friend", "social-emotional"),
+      m("Avoids danger, like not jumping from tall heights at the playground", "social-emotional"),
+      m("Likes to be a helper", "social-emotional"),
+      m("Changes behavior based on where she is (classroom vs. playground)", "social-emotional"), // CDC 2022
+
+      // Language/Communication
+      m("Says sentences with four or more words", "expressive-language"), // CDC 2022
+      m("Says some words from a song, poem, or nursery rhyme", "expressive-language"), // CDC 2022
+      m("Talks about at least one thing that happened during his day", "expressive-language"), // CDC 2022
+      m("Answers simple questions like 'what is a coat for?' or 'what is a crayon for?'", "expressive-language"),
+
+      // Cognitive
+      m("Names a few colors of items", "cognitive"), // CDC 2022
+      m("Tells what comes next in a well-known story", "cognitive"), // CDC 2022
+      m("Draws a person with three or more body parts", "cognitive"), // CDC 2022
+
+      // Movement/Physical
+      m("Catches a large ball most of the time", "gross-motor"), // CDC 2022
+      m("Serves herself food or pours water with adult supervision", "self-help"),
+      m("Unbuttons some buttons", "self-help"),
+      m("Holds crayon or pencil between fingers and thumb (not a fist)", "fine-motor"),
     ],
   },
+
+  // ─────────────────────────────────────────────
+  // 5 YEARS
+  // CDC 2022: cdc.gov/act-early/milestones/5-years.html
+  // ─────────────────────────────────────────────
   {
     id: "5y",
     label: "5 Years",
     sublabel: "School-Age",
     milestones: [
-      m("Walks down stairs with rail, alternating feet", "gross-motor"),
-      m("Balances on one foot > 8 seconds", "gross-motor"),
-      m("Hops on one foot 15 times", "gross-motor"),
-      m("Skips", "gross-motor"),
-      m("Running broad jump 2 to 3 feet", "gross-motor"),
-      m("Copies triangle", "fine-motor"),
-      m("Puts paper clip on paper", "fine-motor"),
-      m("Can use clothespins to transfer small objects", "fine-motor"),
-      m("Cuts with scissors", "fine-motor"),
-      m("Writes first name", "fine-motor"),
-      m("Spreads with knife", "self-help"),
-      m("Independent dressing", "self-help"),
-      m("Bathes independently", "self-help"),
-      m("Draws an 8 to 10-part person", "problem-solving"),
-      m("Gives amounts (< 10)", "problem-solving"),
-      m("Identifies coins", "problem-solving"),
-      m("Names letters/numerals out of order", "problem-solving"),
-      m("Rote counts to 10", "problem-solving"),
-      m("Has group of friends", "social-emotional"),
-      m("Apologizes for mistakes", "social-emotional"),
-      m("Responds verbally to good fortune of others", "social-emotional"),
-      m("Enjoys rhyming words and alliterations", "social-emotional"),
-      m("Knows sounds of consonants and short vowels", "social-emotional"),
-      m("Knows right and left on self", "receptive-language"),
-      m("Understands \"er\" endings", "receptive-language"),
-      m("Responds to \"why\" questions", "receptive-language"),
-      m("Points correctly to \"side,\" \"middle,\" \"corner\"", "receptive-language"),
-      m("Repeats six to eight-word sentence", "expressive-language"),
-      m("Defines simple words", "expressive-language"),
-      m("Uses 2,000 words", "expressive-language"),
-      m("Retells story with clear beginning, middle, end", "expressive-language"),
-    ],
-  },
-  {
-    id: "6y",
-    label: "6 Years",
-    sublabel: "School-Age",
-    milestones: [
-      m("Tandem walks from memory", "gross-motor"),
-      m("Builds stairs from memory", "fine-motor"),
-      m("Draws diamond", "fine-motor"),
-      m("Writes first and last name", "fine-motor"),
-      m("Creates and writes short sentences", "fine-motor"),
-      m("Copies drawing of flag", "fine-motor"),
-      m("Forms letters with down-going and counterclockwise strokes", "fine-motor"),
-      m("Ties shoes", "self-help"),
-      m("Combs hair", "self-help"),
-      m("Looks both ways at street", "self-help"),
-      m("Remembers to bring belongings", "self-help"),
-      m("Draws a 12 to 14-part person", "problem-solving"),
-      m("Number concepts to 20", "problem-solving"),
-      m("Simple addition/subtraction", "problem-solving"),
-      m("Sounds out regularly spelled words", "problem-solving"),
-      m("Reads 250 words by end of first grade", "problem-solving"),
-      m("Understands seasons", "problem-solving"),
-      m("Has best friend of same sex", "social-emotional"),
-      m("Plays board games", "social-emotional"),
-      m("Wants to be like friends and please them", "social-emotional"),
-      m("Distinguishes fantasy from reality", "social-emotional"),
-      m("Enjoys school", "social-emotional"),
-      m("Asks what unfamiliar words mean", "receptive-language"),
-      m("Repeats 8 to 10-word sentences", "expressive-language"),
-      m("Describes events in order", "expressive-language"),
-      m("10,000 word vocabulary", "expressive-language"),
+      // Social/Emotional
+      m("Follows rules or takes turns when playing games with other children", "social-emotional"),
+      m("Sings, dances, or acts for you", "social-emotional"),
+      m("Does simple chores at home, like matching socks or clearing the table", "social-emotional"),
+
+      // Language/Communication
+      m("Tells a story she heard or made up with at least two events", "expressive-language"), // CDC 2022
+      m("Answers simple questions about a book or story after you read or tell it to him", "expressive-language"), // CDC 2022
+      m("Keeps a conversation going with more than three back-and-forth exchanges", "expressive-language"), // CDC 2022
+      m("Uses or recognizes simple rhymes (bat-cat, ball-tall)", "expressive-language"), // CDC 2022
+
+      // Cognitive
+      m("Counts to 10", "cognitive"), // CDC 2022
+      m("Names some numbers between 1 and 5 when you point to them", "cognitive"), // CDC 2022
+      m("Uses words about time, like 'yesterday,' 'tomorrow,' 'morning,' or 'night'", "cognitive"), // CDC 2022
+      m("Pays attention for 5 to 10 minutes during activities", "cognitive"),
+      m("Writes some letters in her name", "cognitive"), // CDC 2022
+      m("Names some letters when you point to them", "cognitive"), // CDC 2022
+
+      // Movement/Physical
+      m("Buttons some buttons", "fine-motor"),
+      m("Hops on one foot", "gross-motor"),
+      m("Dresses and undresses without help", "self-help"),
     ],
   },
 ];
